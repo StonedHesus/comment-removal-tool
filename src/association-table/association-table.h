@@ -5,24 +5,9 @@
 #ifndef COMMENT_REMOVAL_TOOL_ASSOCIATION_TABLE_H
 #define COMMENT_REMOVAL_TOOL_ASSOCIATION_TABLE_H
 
-#include "../compiler-directives/compiler-directives.h"
 #include <stddef.h>
-
-typedef enum supported_types{
-    CHAR,
-    INT,
-    DOUBLE,
-    STRING,
-    ARRAY_OF_STRINGS
-} supported_types;
-
-typedef struct association{
-    void * key;
-    supported_types key_data_type;
-
-    void * value;
-    supported_types value_data_type;
-} association;
+#include "../compiler-directives/compiler-directives.h"
+#include "../association/association.h"
 
 typedef struct association_table{
     size_t capacity;
@@ -39,15 +24,6 @@ extern association * get_associations_from(association_table target) result_use_
 extern size_t  get_capacity_of(association_table target) result_use_check reinforce_non_null_arguments_condition;
 extern size_t  get_currently_used_count_of(association_table target) result_use_check reinforce_non_null_arguments_condition;
 extern size_t  get_current_index_of(association_table target) result_use_check reinforce_non_null_arguments_condition;
-extern association get_next_association_from(association_table target) result_use_check reinforce_non_null_arguments_condition;
-
-
-extern association new_association(void *, supported_types, void *, supported_types) result_use_check reinforce_non_null_arguments_condition;
-
-extern void * get_key_of(association) result_use_check reinforce_non_null_arguments_condition;
-extern void * get_value_of(association) result_use_check reinforce_non_null_arguments_condition;
-
-extern supported_types get_key_data_type_of(association) result_use_check reinforce_non_null_arguments_condition;
-extern supported_types get_value_data_type_of(association) result_use_check reinforce_non_null_arguments_condition;
+extern association * get_next_association_from(association_table target) result_use_check reinforce_non_null_arguments_condition;
 
 #endif //COMMENT_REMOVAL_TOOL_ASSOCIATION_TABLE_H
